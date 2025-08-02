@@ -16,7 +16,6 @@ const Login = ({ setCurrentPage }) => {
 
   const navigate = useNavigate();
 
-  // Handle Login form submit
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -65,7 +64,7 @@ const Login = ({ setCurrentPage }) => {
           value={email}
           onChange={({ target }) => setEmail(target.value)}
           label="Email Address"
-          placeholder="john@example.com"
+          placeholder="avi@mail.com"
           type="text"
         />
         <Input

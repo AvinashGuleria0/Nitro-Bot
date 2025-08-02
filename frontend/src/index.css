@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
 
 :root {
   --font-display: "Urbanist", sans-serif;
@@ -47,7 +47,8 @@
   }
 
   @keyframes blob1 {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
@@ -59,7 +60,8 @@
   }
 
   @keyframes blob2 {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
@@ -71,7 +73,8 @@
   }
 
   @keyframes blob3 {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
