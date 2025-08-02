@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/inputs/Input";
 import ProfilePhotoSelector from "../../components/inputs/profilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
-import axioInstance from "../../utils/axioInstance"; // ✅ Make sure you import this
-import { API_PATHS } from "../../utils/apiPaths"; // ✅ And this too!
+import axioInstance from "../../utils/axioInstance"; 
+import { API_PATHS } from "../../utils/apiPaths";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import uploadImage from "../../utils/uploadImage";
@@ -19,11 +19,10 @@ const SignUp = ({ setCurrentPage }) => {
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // Handle SignUp Form Submit
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    let profileImageUrl = ""; // Use your upload logic if needed
+    let profileImageUrl = ""; 
 
     if (!fullName) {
       setError("Please enter full name.");
@@ -43,7 +42,6 @@ const SignUp = ({ setCurrentPage }) => {
     setError("");
 
     try {
-      // Upload image if present
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
         profileImageUrl = imgUploadRes.imageUrl || "";
@@ -86,14 +84,14 @@ const SignUp = ({ setCurrentPage }) => {
             value={fullName}
             onChange={({ target }) => setFullName(target.value)}
             label="Full Name"
-            placeholder="John"
+            placeholder="Avinash Guleria"
             type="text"
           />
           <Input
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             label="Email Address"
-            placeholder="john@example.com"
+            placeholder="avi@mail.com"
             type="email"
           />
           <Input

@@ -3,19 +3,10 @@ import { FaEye, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Input = ({ value, onChange, label, placeholder, type }) => {
   const [showPassword, setShowPassword] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
+  
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle form submission logic here
-  //   console.log("Email:", email);
-  //   console.log("Password:", password);
-  // };
 
   return (
     <>

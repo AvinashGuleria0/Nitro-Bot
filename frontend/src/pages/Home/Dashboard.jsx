@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { LuPlus } from "react-icons/lu";
 import Card_BG from "../../utils/data";
 import toast from "react-hot-toast";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
 import { API_PATHS } from "../../utils/apiPaths";
 import axioInstance from "../../utils/axioInstance";
 import SummaryCard from "../../components/cards/SummaryCard";
@@ -35,13 +33,10 @@ const Dashboard = () => {
   };
 
   const deleteSession = async (sessionData) => {
-    // console.log("Deleting session with ID:", sessionData?._id);
-
     try {
       const res = await axioInstance.delete(
         API_PATHS.SESSION.DELETE(sessionData._id)
       );
-      // console.log("API response:", res);
 
       setSessions((prev) => prev.filter((s) => s._id !== sessionData._id));
       setOpenDeleteAlert({ open: false, data: null });

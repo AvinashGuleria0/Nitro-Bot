@@ -39,18 +39,16 @@ const CreateSessionForm = () => {
     setIsLoading(true);
 
     try {
-      // Call AI API to generate questions
       const aiResponse = await axiosInstance.post(
         API_PATHS.AI.GENERATE_QUESTIONS,
         {
           role,
           experience,
           topicsToFocus,
-          numberOfQuestions: 10,
+          numberOfQuestions: 11,
         }
       );
 
-      // Should be array like [{question, answer}, ...]
       const generatedQuestions = aiResponse.data;
 
       const response = await axiosInstance.post(API_PATHS.SESSION.CREATE, {
@@ -86,7 +84,7 @@ const CreateSessionForm = () => {
           value={formData.role}
           onChange={({ target }) => handleChange("role", target.value)}
           label="Target Role"
-          placeholder="e.g., Frontend Developer, UI/UX Designer, etc."
+          placeholder="e.g., Full-Stack Developer, UI/UX Designer, etc."
           type="text"
         />
 
@@ -102,7 +100,7 @@ const CreateSessionForm = () => {
           value={formData.topicsToFocus}
           onChange={({ target }) => handleChange("topicsToFocus", target.value)}
           label="Topics to Focus On"
-          placeholder="(Comma-separated, e.g., React, Node.js, MongoDB)"
+          placeholder="(Comma-separated, e.g., React, Node.js, MongoDB, NextJs)"
           type="text"
         />
         <Input

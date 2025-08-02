@@ -13,7 +13,6 @@ const SummaryCard = ({
   onSelect,
   onDelete,
 }) => {
-  
   return (
     <div className="p-2 rounded-2xl">
       <div
@@ -35,7 +34,6 @@ const SummaryCard = ({
             {/* Content Container */}
             <div className="flex-grow">
               <div className="flex flex-col justify-between items-start">
-                {/* Title and Skills */}
                 <h2 className="text-[17px] font-medium">Role: {role}</h2>
                 <p className="text-xs  text-medium text-gray-900">
                   {topicsToFocus || "No Topics"}
@@ -61,11 +59,17 @@ const SummaryCard = ({
           <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full">
             Experience: {experience} {experience === 1 ? "Year" : "Years"}
           </div>
-          <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full">{questions} Q&A</div>
-          <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full">Last Updated: {lastUpdated}</div>
+          <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full">
+            {questions} Q&A
+          </div>
+          <div className="text-[10px] font-medium text-black px-3 py-1 border-[0.5px] border-gray-900 rounded-full">
+            Last Updated: {lastUpdated}
+          </div>
         </div>
         {/* Description */}
-        <p className="text-[12px] text-gray-500 font-medium line-clamp-2 mt-3">{description}</p>
+        <p className="text-[12px] text-gray-500 font-medium line-clamp-2 mt-3">
+          {description}
+        </p>
       </div>
     </div>
   );
