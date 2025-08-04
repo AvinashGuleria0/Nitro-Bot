@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getUserProfile } = require('../controllers/authController');
+const { registerUser, loginUser, getUserProfile, updateUserProfile } = require('../controllers/authController');
 const { protect } = require('../middlewares/authMiddleware')
 const multer = require("multer");
 const path = require("path");
 
-// Multer config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");
@@ -20,7 +19,8 @@ const upload = multer({ storage });
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/profile', protect, getUserProfile); // ✅ USE protect!
+router.get('/profile', protect, getUserProfile);
+router.put("/update", protect, updateUserProfile);
 
 router.post("/upload-image", upload.single("image"), (req, res) => {
   if (!req.file) {

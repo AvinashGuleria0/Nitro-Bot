@@ -6,9 +6,6 @@ const {
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-// @desc    Generate interview questions and answers using Gemini
-// @route   POST /api/ai/generate-questions
-// @access  Private
 const generateInterviewQuestions = async (req, res) => {
   try {
     const { role, experience, topicsToFocus, numberOfQuestions } = req.body;
@@ -32,7 +29,7 @@ const generateInterviewQuestions = async (req, res) => {
 
     const cleanedText = rawText
       .replace(/^\s*```json\s*/, "")
-      .replace(/\s*```$/, "")
+      .replace(/```$/, "")
       .trim();
 
     const data = JSON.parse(cleanedText);
@@ -47,9 +44,6 @@ const generateInterviewQuestions = async (req, res) => {
   }
 };
 
-// @desc    Generate explains a interview question
-// @route   POST /api/ai/generate-explanation
-// @access  Private
 const generateConceptExplanation = async (req, res) => {
   try {
     const { question } = req.body;
@@ -60,7 +54,7 @@ const generateConceptExplanation = async (req, res) => {
     const prompt = `Provide the explanation as valid JSON like this:\n\`\`\`json\n{\n  "explanation": "Your answer here"\n}\n\`\`\`\n\nQuestion: ${question}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash", // ✅ valid model!
+      model: "gemini-1.5-pro",
       contents: prompt,
     });
 
@@ -73,7 +67,6 @@ const generateConceptExplanation = async (req, res) => {
       .replace(/```/g, "")
       .trim();
 
-    // console.log("CLEANED:", cleanedText);
 
     const data = JSON.parse(cleanedText);
 
