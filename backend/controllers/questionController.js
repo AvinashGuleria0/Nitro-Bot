@@ -1,21 +1,15 @@
 const Question = require("../models/Question");
 const Session = require("../models/Session");
 
-// @desc    Add additional questions to an existing session
-// @route   POST /api/questions/add
-// @access  Private
 exports.addQuestionsToSession = async (req, res) => {
   try {
     const { sessionId, questions } = req.body;
-    console.log("sessionId:", sessionId);
-    console.log("questions:", questions);
 
     if (!sessionId || !questions || !Array.isArray(questions)) {
       return res.status(400).json({ message: "Invalid input data" });
     }
 
     const session = await Session.findById(sessionId);
-    console.log("session:", session);
 
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
@@ -28,13 +22,11 @@ exports.addQuestionsToSession = async (req, res) => {
         answer: q.answer,
       }))
     );
-    console.log("createdQuestions:", createdQuestions);
 
     if (!session.questions) {
       session.questions = [];
     }
     session.questions.push(...createdQuestions.map((q) => q._id));
-    console.log("updated session.questions:", session.questions);
 
     await session.save();
     res.status(201).json(createdQuestions);
@@ -44,9 +36,6 @@ exports.addQuestionsToSession = async (req, res) => {
   }
 };
 
-// @desc    Pin or unpin a question
-// @route   POST /api/questions/:id/pin
-// @access  Private
 exports.togglePinQuestion = async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
@@ -66,9 +55,6 @@ exports.togglePinQuestion = async (req, res) => {
   }
 };
 
-// @desc    Update a note for a question
-// @route   POST /api/questions/:id/note
-// @access  Private
 exports.updateQuestionNote = async (req, res) => {
   try {
     const { note } = req.body;

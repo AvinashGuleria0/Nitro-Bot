@@ -6,7 +6,7 @@ const Modal = ({ children, isOpen, onClose, title, hideHeader }) => {
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black/40">
       <div
-        className={`absolute flex flex-col bg-white shadow-lg rounded-lg overflow-hidden`}
+        className={`relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden`}
       >
         {!hideHeader && (
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
