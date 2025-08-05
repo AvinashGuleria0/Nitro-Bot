@@ -16,26 +16,22 @@ const SummaryCard = ({
   return (
     <div className="group cursor-pointer" onClick={onSelect}>
       <div className="bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl border border-slate-200/50 hover:border-slate-300/50 transition-all duration-500 hover:transform hover:-translate-y-2">
-        {/* Header Section with Gradient Background */}
         <div
           className="relative p-6 text-white"
           style={{
             background: colors.bgcolor || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           }}
         >
-          {/* Subtle overlay for better text contrast */}
           <div className="absolute inset-0 bg-black/10 rounded-t-2xl"></div>
           
           <div className="relative z-10 flex items-start justify-between">
             <div className="flex items-center gap-4 flex-1">
-              {/* Role Avatar */}
               <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30 shadow-lg">
                 <span className="text-xl font-bold text-white">
                   {getInitials(role)}
                 </span>
               </div>
               
-              {/* Role Information */}
               <div className="flex-1 min-w-0">
                 <h2 className="text-lg font-semibold text-white mb-1 truncate">
                   {role}
@@ -46,7 +42,6 @@ const SummaryCard = ({
               </div>
             </div>
 
-            {/* Delete Button */}
             <button
               className="opacity-0 group-hover:opacity-100 flex items-center justify-center w-10 h-10 bg-white/20 hover:bg-red-500/90 backdrop-blur-sm rounded-full border border-white/30 hover:border-red-400 transition-all duration-300 hover:scale-110"
               onClick={(e) => {
@@ -60,9 +55,7 @@ const SummaryCard = ({
           </div>
         </div>
 
-        {/* Content Section */}
         <div className="p-6 space-y-4">
-          {/* Stats Grid */}
           <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2 bg-slate-50 rounded-xl p-3">
               <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
@@ -89,13 +82,11 @@ const SummaryCard = ({
             </div>
           </div>
 
-          {/* Last Updated */}
           <div className="flex items-center gap-2 text-xs text-slate-500">
             <LuCalendarDays className="w-3 h-3" />
             <span>Updated {lastUpdated}</span>
           </div>
 
-          {/* Description */}
           {description && (
             <div className="pt-2 border-t border-slate-100">
               <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
@@ -104,7 +95,6 @@ const SummaryCard = ({
             </div>
           )}
 
-          {/* Action Indicator */}
           <div className="flex items-center justify-between pt-2">
             <div className="flex items-center gap-1 text-xs text-slate-400">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
@@ -116,7 +106,6 @@ const SummaryCard = ({
           </div>
         </div>
 
-        {/* Bottom accent bar */}
         <div 
           className="h-1 opacity-60"
           style={{

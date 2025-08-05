@@ -49,10 +49,11 @@ const QuestionCard = ({
             </div>
 
             <div className="flex items-center gap-2 ml-4">
-              {/* Action buttons - always visible on hover or when expanded */}
               <div
                 className={`flex items-center gap-2 transition-all duration-300 ${
-                  isExpanded ? "opacity-100 translate-x-0" : "opacity-0 md:opacity-0 md:group-hover:opacity-100 translate-x-2 md:group-hover:translate-x-0"
+                  isExpanded
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 md:opacity-0 md:group-hover:opacity-100 translate-x-2 md:group-hover:translate-x-0"
                 }`}
               >
                 <button
@@ -102,7 +103,6 @@ const QuestionCard = ({
             </div>
           </div>
 
-          {/* Expandable content */}
           <div
             className="overflow-hidden transition-all duration-500 ease-out"
             style={{ maxHeight: `${height}px` }}
@@ -116,7 +116,9 @@ const QuestionCard = ({
                   <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
                     <span className="text-xs font-bold text-white">A</span>
                   </div>
-                  <span className="text-sm font-medium text-slate-600">AI Response</span>
+                  <span className="text-sm font-medium text-slate-600">
+                    AI Response
+                  </span>
                 </div>
                 <div className="text-slate-700 leading-relaxed">
                   <AIResponsePreview content={answer} />
@@ -126,7 +128,6 @@ const QuestionCard = ({
           </div>
         </div>
 
-        {/* Subtle bottom accent when expanded */}
         {isExpanded && (
           <div className="h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 animate-pulse"></div>
         )}
