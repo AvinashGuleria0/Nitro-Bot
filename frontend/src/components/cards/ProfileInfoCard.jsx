@@ -31,12 +31,10 @@ const ProfileInfoCard = () => {
 
   return user && (
     <div className="relative">
-      {/* Main Profile Button */}
       <button
         onClick={toggleDropdown}
         className="flex items-center gap-3 bg-white/80 backdrop-blur-sm hover:bg-white border border-slate-200/50 hover:border-slate-300 rounded-full px-4 py-2 transition-all duration-300 shadow-sm hover:shadow-md group"
       >
-        {/* Profile Avatar */}
         <div className="relative">
           {user.profileImageUrl ? (
             <img
@@ -49,11 +47,9 @@ const ProfileInfoCard = () => {
               {getInitials(user.name)}
             </div>
           )}
-          {/* Online indicator */}
           <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
         </div>
 
-        {/* User Info */}
         <div className="hidden sm:flex flex-col items-start">
           <div className="text-sm font-semibold text-slate-800 leading-tight">
             {user.name || "User"}
@@ -63,7 +59,6 @@ const ProfileInfoCard = () => {
           </div>
         </div>
 
-        {/* Dropdown Arrow */}
         <LuChevronDown 
           className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${
             isDropdownOpen ? 'rotate-180' : ''
@@ -71,18 +66,14 @@ const ProfileInfoCard = () => {
         />
       </button>
 
-      {/* Dropdown Menu */}
       {isDropdownOpen && (
         <>
-          {/* Backdrop */}
           <div 
             className="fixed inset-0 z-10"
             onClick={() => setIsDropdownOpen(false)}
           />
           
-          {/* Dropdown Content */}
           <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-xl z-20 overflow-hidden animate-in slide-in-from-top-2 duration-200">
-            {/* User Info Header */}
             <div className="p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-purple-50">
               <div className="flex items-center gap-3">
                 {user.profileImageUrl ? (
@@ -107,7 +98,6 @@ const ProfileInfoCard = () => {
               </div>
             </div>
 
-            {/* Menu Items */}
             <div className="p-2">
               <button
                 onClick={() => {

@@ -1,5 +1,5 @@
 const Card_BG = [
-  {id: 1, bgcolor: 'linear-gradient(135deg, #e6f8f3 0%, #7f7cfa 100%)'},
+{id: 1, bgcolor: 'linear-gradient(135deg, #e6f8f3 0%, #7f7cfa 100%)'},
 {id: 2, bgcolor: 'linear-gradient(135deg, #efe7f7 0%, #3f1b81 100%)'},
 {id: 3, bgcolor: 'linear-gradient(135deg, #eae7f7 0%, #3f1b81 100%)'},
 {id: 4, bgcolor: 'linear-gradient(135deg, #fff7e9 0%, #1f813 100%)'},
