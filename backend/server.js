@@ -28,9 +28,6 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use('/', (req, res) => {
-  res.send('Welcome to the Nitro Bot !');
-})
 
 // Routes
 app.use("/api/auth", authRoute);
@@ -46,6 +43,11 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Keep-alive endpoint for Render (prevents spindown)
 app.get("/ping", (req, res) => {
   res.status(200).json({ status: "ok", timestamp: new Date() });
+});
+
+// Welcome route (catch-all, must be last)
+app.use('/', (req, res) => {
+  res.send('Welcome to the Nitro Bot !');
 });
 
 app.listen(PORT, () => {
