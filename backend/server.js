@@ -28,6 +28,9 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+app.use('/', (req, res) => {
+  res.send('Welcome to the Nitro Bot !');
+})
 
 // Routes
 app.use("/api/auth", authRoute);
@@ -39,6 +42,11 @@ app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 // Serve uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Keep-alive endpoint for Render (prevents spindown)
+app.get("/ping", (req, res) => {
+  res.status(200).json({ status: "ok", timestamp: new Date() });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
