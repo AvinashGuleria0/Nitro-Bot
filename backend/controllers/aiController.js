@@ -1,10 +1,10 @@
-const { GoogleGenAI } = require("@google/genai");
+const Groq = require("groq-sdk");
 const {
   conceptExplainPrompt,
   questionAnswerPrompt,
 } = require("../../backend/utils/prompts");
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const generateInterviewQuestions = async (req, res) => {
   try {
@@ -20,12 +20,14 @@ const generateInterviewQuestions = async (req, res) => {
       numberOfQuestions
     );
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-lite",
-      contents: prompt,
+    const response = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama-3.3-70b-versatile",
+      temperature: 0.7,
+      max_tokens: 2048,
     });
 
-    const rawText = response.candidates[0].content.parts[0].text;
+    const rawText = response.choices[0].message.content;
 
     const cleanedText = rawText
       .replace(/^\s*```json\s*/, "")
@@ -53,12 +55,14 @@ const generateConceptExplanation = async (req, res) => {
 
     const prompt = `Provide the explanation as valid JSON like this:\n\`\`\`json\n{\n  "explanation": "Your answer here"\n}\n\`\`\`\n\nQuestion: ${question}`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-1.5-pro",
-      contents: prompt,
+    const response = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama-3.3-70b-versatile",
+      temperature: 0.7,
+      max_tokens: 1024,
     });
 
-    const rawText = response.candidates[0].content.parts[0].text;
+    const rawText = response.choices[0].message.content;
 
     console.log("RAW:", rawText);
 
@@ -66,7 +70,6 @@ const generateConceptExplanation = async (req, res) => {
       .replace(/```json\s*/i, "")
       .replace(/```/g, "")
       .trim();
-
 
     const data = JSON.parse(cleanedText);
 
@@ -79,6 +82,5 @@ const generateConceptExplanation = async (req, res) => {
     });
   }
 };
-
 
 module.exports = { generateInterviewQuestions, generateConceptExplanation };
