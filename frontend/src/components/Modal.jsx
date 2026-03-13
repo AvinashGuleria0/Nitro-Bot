@@ -4,18 +4,18 @@ const Modal = ({ children, isOpen, onClose, title, hideHeader }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black/40">
+    <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-sm">
       <div
-        className={`relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden`}
+        className={`relative flex flex-col bg-white sketch-border sketch-shadow-lg overflow-hidden m-4`}
       >
         {!hideHeader && (
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h3 className="md:text-lg font-medium text-gray-900">{title}</h3>
+          <div className="flex items-center justify-between p-4 border-b-4 border-black bg-[var(--color-accent-yellow)]">
+            <h3 className="md:text-xl font-black text-black">{title}</h3>
           </div>
         )}
         <button
           type="button"
-          className=" text-gray-400 bg-transparent hover:bg-orange-100 hover:text-gray-900 rounded-lg text-sm w-6 h-6 flex justify-center items-center absolute top-4 right-4 cursor-pointer"
+          className=" text-black bg-white hover:bg-[var(--color-accent-pink)] sketch-border text-sm w-8 h-8 flex justify-center items-center absolute top-4 right-4 cursor-pointer transition-colors shadow-[2px_2px_0px_0px_#000] z-10"
           onClick={onClose}
         >
           <svg 

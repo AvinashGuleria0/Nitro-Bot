@@ -37,15 +37,15 @@ const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
       />
 
       {!image ? (
-        <div className="w-20 h-20 flex items-center justify-center bg-orange-50 rounded-full relative cursor-pointer">
-          <LuUser className="text-4xl text-orange-500" />
+        <div className="w-20 h-20 flex items-center justify-center bg-[var(--color-accent-yellow)] sketch-border relative cursor-pointer hover:-rotate-6 transition-transform">
+          <LuUser className="text-4xl text-black" onClick={onChooseFile} />
 
           <button
             type="button"
-            className="w-8 h-8 items-center justify-center bg-linear-to-r bg-orange-500/85 text-white rounded-full absolute -bottom-1 -right-1 cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center bg-[var(--color-accent-pink)] text-black sketch-border absolute -bottom-3 -right-3 cursor-pointer"
             onClick={onChooseFile}
           >
-            <LuUpload className=" ml-2" />
+            <LuUpload />
           </button>
         </div>
       ) : (
@@ -53,12 +53,12 @@ const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
           <img
             src={preview || previewUrl}
             alt="profile photo"
-            className="w-20 h-20 rounded-full object-cover"
+            className="w-20 h-20 object-cover sketch-border bg-white"
           />
           
           <button
             type="button"
-            className="w-8 h-8 flex items-center justify-center bg-linear-to-r to-orange-600 text-white rounded-full absolute -bottom-1 -right-1 cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center bg-white text-black sketch-border absolute -bottom-3 -right-3 cursor-pointer hover:bg-[var(--color-accent-pink)]"
             onClick={handleRemoveImage}
           >
             <LuTrash />

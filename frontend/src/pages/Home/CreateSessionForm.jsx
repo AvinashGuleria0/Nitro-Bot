@@ -71,11 +71,11 @@ const CreateSessionForm = () => {
   };
 
   return (
-    <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">
+    <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center bg-white sketch-border">
+      <h3 className="text-2xl font-black text-black inline-block bg-[var(--color-accent-blue)] px-4 py-1 sketch-border shadow-[2px_2px_0px_0px_#000] -rotate-1 mb-2">
         Start a New Interview Journey
       </h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-3">
+      <p className="text-sm font-bold text-slate-800 mt-[5px] mb-4 border-b-2 border-dashed border-black pb-2">
         Fill out a few quick details and unlock your personalized set of
         interview questions!
       </p>
@@ -112,7 +112,7 @@ const CreateSessionForm = () => {
         />
 
         {error && (
-          <p className="text-red-500 text-xs pb-2.5">
+          <p className="text-red-500 font-bold text-xs pb-2.5 bg-[var(--color-accent-pink)] p-2 sketch-border mt-2">
             {error}
           </p>
         )}

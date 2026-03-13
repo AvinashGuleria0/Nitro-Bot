@@ -54,23 +54,19 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-100/40 to-purple-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-100/40 to-cyan-100/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-        <div className="container mx-auto pt-8 pb-24 relative z-10">
+      <div className="min-h-screen bg-[var(--color-bg)] relative overflow-hidden">
+        <div className="container mx-auto pt-8 pb-24 relative z-10 px-6">
           {/* Header Section */}
-          <div className="mb-12 px-4 md:px-0">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <LuSparkles className="text-white text-lg" />
+          <div className="mb-12">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-[var(--color-accent-pink)] sketch-border flex items-center justify-center -rotate-3">
+                <LuSparkles className="text-black text-xl" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-800 tracking-tight">
+                <h1 className="text-4xl font-black text-black tracking-tight inline-block bg-white px-4 py-1 sketch-border shadow-[2px_2px_0px_0px_#000]">
                   Interview Prep Dashboard
                 </h1>
-                <p className="text-slate-600 mt-1">
+                <p className="text-slate-800 font-bold mt-2 text-lg">
                   {sessions.length > 0
                     ? `Manage your ${
                         sessions.length
@@ -85,11 +81,10 @@ const Dashboard = () => {
 
           {/* Sessions Grid */}
           {sessions.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4 md:px-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {sessions?.map((data, index) => (
                 <div
                   key={data?.id || data?._id || index}
-                  className="transform hover:scale-105 transition-all duration-300"
                   style={{
                     animationDelay: `${index * 100}ms`,
                   }}
@@ -115,18 +110,18 @@ const Dashboard = () => {
           ) : (
             // Empty State
             <div className="flex flex-col items-center justify-center py-20 px-4">
-              <div className="w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mb-8">
-                <LuSparkles className="text-indigo-500 text-4xl" />
+              <div className="w-32 h-32 bg-[var(--color-accent-blue)] sketch-border flex items-center justify-center mb-8 rotate-3 sketch-shadow">
+                <LuSparkles className="text-black text-4xl" />
               </div>
-              <h3 className="text-2xl font-semibold text-slate-800 mb-3">
+              <h3 className="text-3xl font-black text-black mb-3">
                 No Sessions Yet
               </h3>
-              <p className="text-slate-600 text-center max-w-md mb-8 leading-relaxed">
+              <p className="text-slate-800 font-bold text-center max-w-md mb-8 leading-relaxed">
                 Create your first interview preparation session to get started
                 with AI-powered learning and practice.
               </p>
               <button
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-full hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="sketch-button bg-[var(--color-accent-pink)] text-black font-black px-8 py-4 flex items-center gap-2"
                 onClick={() => setOpenCreateModal(true)}
               >
                 <LuPlus className="text-lg" />
@@ -139,7 +134,7 @@ const Dashboard = () => {
           {/* Extended FAB for larger screens */}
           {sessions.length > 0 && (
             <button
-              className="hidden lg:flex fixed bottom-8 right-8 h-14 items-center justify-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-6 py-4 rounded-full hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl z-20"
+              className="hidden lg:flex fixed bottom-8 right-8 h-14 items-center justify-center gap-3 bg-[var(--color-accent-yellow)] text-black font-black px-6 py-4 sketch-button z-20"
               onClick={() => setOpenCreateModal(true)}
             >
               <LuPlus className="text-lg" />

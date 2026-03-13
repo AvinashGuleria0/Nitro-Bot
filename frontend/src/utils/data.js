@@ -1,14 +1,14 @@
 const Card_BG = [
-{id: 1, bgcolor: 'linear-gradient(135deg, #e6f8f3 0%, #7f7cfa 100%)'},
-{id: 2, bgcolor: 'linear-gradient(135deg, #efe7f7 0%, #3f1b81 100%)'},
-{id: 3, bgcolor: 'linear-gradient(135deg, #eae7f7 0%, #3f1b81 100%)'},
-{id: 4, bgcolor: 'linear-gradient(135deg, #fff7e9 0%, #1f813 100%)'},
-{id: 5, bgcolor: 'linear-gradient(135deg, #e7f6f0 0%, #f4f1d 100%)'},
-{id: 6, bgcolor: 'linear-gradient(135deg, #f5f5f5 0%, #bfbfbf 100%)'},
-{id: 7, bgcolor: 'linear-gradient(135deg, #fff4fc 0%, #f8f8f8 100%)'},
-{id: 8, bgcolor: 'linear-gradient(135deg, #e8e3f3 0%, #f5f8f8 100%)'},
-{id: 9, bgcolor: 'linear-gradient(135deg, #0fecff 0%, #f7f5f1 100%)'},
-{id: 10, bgcolor: 'linear-gradient(135deg, #fef2f2 0%, #fff8f8 100%)'},
+{id: 1, bgcolor: 'linear-gradient(135deg, #e6f8f3 0%, #7f7cfa 100%)', sketchBg: 'bg-[var(--color-accent-pink)]'},
+{id: 2, bgcolor: 'linear-gradient(135deg, #efe7f7 0%, #3f1b81 100%)', sketchBg: 'bg-[var(--color-accent-blue)]'},
+{id: 3, bgcolor: 'linear-gradient(135deg, #eae7f7 0%, #3f1b81 100%)', sketchBg: 'bg-[var(--color-accent-yellow)]'},
+{id: 4, bgcolor: 'linear-gradient(135deg, #fff7e9 0%, #1f813 100%)', sketchBg: 'bg-[var(--color-accent-green)]'},
+{id: 5, bgcolor: 'linear-gradient(135deg, #e7f6f0 0%, #f4f1d 100%)', sketchBg: 'bg-[var(--color-accent-pink)]'},
+{id: 6, bgcolor: 'linear-gradient(135deg, #f5f5f5 0%, #bfbfbf 100%)', sketchBg: 'bg-[var(--color-accent-blue)]'},
+{id: 7, bgcolor: 'linear-gradient(135deg, #fff4fc 0%, #f8f8f8 100%)', sketchBg: 'bg-[var(--color-accent-yellow)]'},
+{id: 8, bgcolor: 'linear-gradient(135deg, #e8e3f3 0%, #f5f8f8 100%)', sketchBg: 'bg-[var(--color-accent-green)]'},
+{id: 9, bgcolor: 'linear-gradient(135deg, #0fecff 0%, #f7f5f1 100%)', sketchBg: 'bg-[var(--color-accent-pink)]'},
+{id: 10, bgcolor: 'linear-gradient(135deg, #fef2f2 0%, #fff8f8 100%)', sketchBg: 'bg-[var(--color-accent-blue)]'},
 ];
 export default Card_BG;        
 

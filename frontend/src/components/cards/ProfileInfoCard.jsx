@@ -33,34 +33,34 @@ const ProfileInfoCard = () => {
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className="flex items-center gap-3 bg-white/80 backdrop-blur-sm hover:bg-white border border-slate-200/50 hover:border-slate-300 rounded-full px-4 py-2 transition-all duration-300 shadow-sm hover:shadow-md group"
+        className="flex items-center gap-3 bg-[var(--color-accent-blue)] sketch-border px-4 py-2 transition-transform duration-300 hover:-translate-y-1 shadow-[2px_2px_0px_0px_#000] group"
       >
         <div className="relative">
           {user.profileImageUrl ? (
             <img
               src={user.profileImageUrl}
               alt="Profile"
-              className="w-9 h-9 rounded-full object-cover ring-2 ring-slate-200 group-hover:ring-indigo-300 transition-all duration-300"
+              className="w-10 h-10 object-cover sketch-border bg-white"
             />
           ) : (
-            <div className="w-9 h-9 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm ring-2 ring-slate-200 group-hover:ring-indigo-300 transition-all duration-300">
+            <div className="w-10 h-10 bg-[var(--color-accent-pink)] sketch-border flex items-center justify-center text-black font-black text-sm">
               {getInitials(user.name)}
             </div>
           )}
-          <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[var(--color-accent-green)] border-2 border-black"></div>
         </div>
 
-        <div className="hidden sm:flex flex-col items-start">
-          <div className="text-sm font-semibold text-slate-800 leading-tight">
+        <div className="hidden sm:flex flex-col items-start bg-white/80 px-2 py-1 sketch-border">
+          <div className="text-sm font-black text-black leading-tight">
             {user.name || "User"}
           </div>
-          <div className="text-xs text-slate-500">
+          <div className="text-xs font-bold text-slate-800">
             {user.email ? user.email.split('@')[0] : "Account"}
           </div>
         </div>
 
         <LuChevronDown 
-          className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${
+          className={`w-5 h-5 text-black font-black transition-transform duration-300 ${
             isDropdownOpen ? 'rotate-180' : ''
           }`}
         />
@@ -73,48 +73,48 @@ const ProfileInfoCard = () => {
             onClick={() => setIsDropdownOpen(false)}
           />
           
-          <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-xl z-20 overflow-hidden animate-in slide-in-from-top-2 duration-200">
-            <div className="p-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-purple-50">
+          <div className="absolute right-0 top-full mt-4 w-64 bg-white sketch-border sketch-shadow-lg z-20 overflow-hidden">
+            <div className="p-4 border-b-4 border-black bg-[var(--color-accent-yellow)]">
               <div className="flex items-center gap-3">
                 {user.profileImageUrl ? (
                   <img
                     src={user.profileImageUrl}
                     alt="Profile"
-                    className="w-12 h-12 rounded-full object-cover ring-2 ring-white"
+                    className="w-12 h-12 object-cover sketch-border bg-white"
                   />
                 ) : (
-                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  <div className="w-12 h-12 bg-[var(--color-accent-pink)] sketch-border flex items-center justify-center text-black font-black text-lg">
                     {getInitials(user.name)}
                   </div>
                 )}
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-slate-800 truncate">
+                <div className="flex-1 min-w-0 bg-white/80 px-2 py-1 sketch-border">
+                  <div className="text-sm font-black text-black truncate">
                     {user.name || "User"}
                   </div>
-                  <div className="text-xs text-slate-500 truncate">
+                  <div className="text-xs font-bold text-slate-800 truncate">
                     {user.email || "user@example.com"}
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-2">
+            <div className="p-2 space-y-2 bg-[var(--color-bg)]">
               <button
                 onClick={() => {
                   navigate("/dashboard");
                   setIsDropdownOpen(false);
                 }}
-                className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-slate-700 hover:bg-slate-50 rounded-lg transition-colors duration-200"
+                className="w-full flex items-center gap-3 px-3 py-3 text-sm font-black text-black bg-white sketch-border hover:bg-[var(--color-accent-blue)] transition-colors duration-200"
               >
-                <LuUser className="w-4 h-4" />
+                <LuUser className="w-5 h-5" />
                 Dashboard
               </button>
               
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                className="w-full flex items-center gap-3 px-3 py-3 text-sm font-black text-black bg-white sketch-border hover:bg-[var(--color-accent-pink)] transition-colors duration-200"
               >
-                <LuLogOut className="w-4 h-4" />
+                <LuLogOut className="w-5 h-5" />
                 Sign Out
               </button>
             </div>
