@@ -22,7 +22,7 @@ const AIResponsePreview = ({ content }) => {
 
             if (!inline && match) {
               return (
-                <div className="mt-4 text-gray-700 bg-gray-50 px-5 py-3 rounded-lg">
+                <div className="mt-4 text-black bg-white sketch-border p-4 mb-4">
                   <CodeBlock
                     code={String(children).replace(/\n$/, "")}
                     language={language}
@@ -32,7 +32,7 @@ const AIResponsePreview = ({ content }) => {
             }
 
             return (
-              <code className="px-1 py-0.5 bg-gray-100 rounded text-sm">
+              <code className="px-1 py-0.5 bg-[var(--color-accent-yellow)] sketch-border font-black text-sm">
                 {children}
               </code>
             );
@@ -55,26 +55,26 @@ function CodeBlock({ code, language }) {
   };
 
   return (
-    <div className="relative my-4 rounded-lg overflow-hidden bg-gray-50 border border-gray-200">
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-100 border-b border-gray-200">
+    <div className="relative my-4 bg-white sketch-border">
+      <div className="flex items-center justify-between px-4 py-2 border-b-2 border-dashed border-black bg-[var(--color-accent-pink)]">
         <div className="flex items-center space-x-2">
-          <LuCode size={16} className="text-gray-500" />
-          <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+          <LuCode size={16} className="text-black" />
+          <span className="text-xs font-black text-black uppercase tracking-wide">
             {language || "code"}
           </span>
         </div>
         <button
           onClick={copyCode}
-          className="text-gray-500 hover:text-gray-700 focus:outline-none relative group"
+          className="text-black focus:outline-none relative group"
           aria-label="Copy code"
         >
           {copied ? (
-            <LuCheck size={16} className="text-green-600" />
+            <LuCheck size={16} className="text-black font-bold" />
           ) : (
             <LuCopy size={16} />
           )}
           {copied && (
-            <span className="absolute -top-8 right-0 text-white bg-black text-xs rounded-md px-2 py-1 opacity-80 group-hover:opacity-100 transition">
+            <span className="absolute -top-8 right-0 text-black bg-[var(--color-accent-yellow)] sketch-border text-xs px-2 py-1">
               Copied!
             </span>
           )}
