@@ -112,14 +112,14 @@ const CreateSessionForm = () => {
         />
 
         {error && (
-          <p className="text-red-500 text-xs pb-2.5">
+          <p className="text-red-500 font-bold text-sm bg-red-100 p-2 sketch-border border-red-500 mb-2">
             {error}
           </p>
         )}
 
         <button
           type="submit"
-          className="btn-primary w-full mt-2"
+          className="sketch-button bg-[var(--color-accent-blue)] text-black font-black w-full mt-4 py-4 text-lg flex items-center justify-center gap-2"
           disabled={isLoading}
         >
           {isLoading && <SpinnerLoader />} Create Session

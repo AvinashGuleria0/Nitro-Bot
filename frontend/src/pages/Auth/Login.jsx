@@ -55,11 +55,11 @@ const Login = ({ setCurrentPage }) => {
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex-col justify-center flex items-center max-w-md mx-auto">
-      <h3 className="text-lg font-semibold mb-4 text-black">Welcome Back</h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <h3 className="text-3xl font-black mb-2 text-black text-center">Welcome Back</h3>
+      <p className="text-sm font-bold text-slate-800 mt-[5px] mb-8 text-center bg-[var(--color-accent-yellow)] px-3 py-1 sketch-border inline-block">
         Please enter your details to log in
       </p>
-      <form onSubmit={handleLogin} className="w-full">
+      <form onSubmit={handleLogin} className="w-full space-y-4">
         <Input
           value={email}
           onChange={({ target }) => setEmail(target.value)}
@@ -75,19 +75,20 @@ const Login = ({ setCurrentPage }) => {
           placeholder="Min 8 Characters"
           type="password"
         />
-        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-        <button type="submit" className="btn-primary w-full">
+        {error && <p className="text-red-500 font-bold text-sm bg-red-100 p-2 sketch-border border-red-500">{error}</p>}
+        <button type="submit" className="sketch-button bg-[var(--color-accent-blue)] text-black font-black w-full py-3 mt-4 text-lg">
           LOGIN
         </button>
-        <p className="text-[13px] text-slate-800 mt-3">
+        <p className="text-[14px] font-bold text-slate-800 mt-6 text-center">
           Don’t have an account?{" "}
           <button
-            className="font-medium text-primary underline cursor-pointer"
-            onClick={() => {
+            className="font-black text-black bg-[var(--color-accent-pink)] px-2 py-1 sketch-border sketch-shadow-sm ml-1 hover:translate-y-px hover:translate-x-px hover:shadow-none cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
               setCurrentPage("signup");
             }}
           >
-            SignUp
+            Sign Up
           </button>
         </p>
       </form>

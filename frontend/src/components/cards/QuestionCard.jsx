@@ -31,18 +31,15 @@ const QuestionCard = ({
 
   return (
     <>
-      <div className="group bg-white/90 backdrop-blur-sm rounded-2xl mb-6 overflow-hidden shadow-lg hover:shadow-xl border border-slate-200/50 hover:border-slate-300/50 transition-all duration-500 hover:transform hover:-translate-y-1">
+      <div className="group sketch-border sketch-shadow bg-white mb-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--color-border)]">
         <div className="p-6">
           <div className="flex items-start justify-between cursor-pointer">
-            <div className="flex items-start gap-4 flex-1">
-              <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mt-0.5">
-                <span className="text-sm font-bold text-white">Q</span>
+            <div className="flex items-start gap-4 flex-1" onClick={toggleExpand}>
+              <div className="flex-shrink-0 w-10 h-10 bg-[var(--color-accent-blue)] border-2 border-black rounded-lg flex items-center justify-center mt-0.5">
+                <span className="text-sm font-black text-black">Q</span>
               </div>
               <div className="flex-1">
-                <h3
-                  className="text-base md:text-lg font-semibold text-slate-800 leading-relaxed cursor-pointer hover:text-indigo-600 transition-colors duration-300"
-                  onClick={toggleExpand}
-                >
+                <h3 className="text-base md:text-lg font-bold text-slate-900 leading-relaxed cursor-pointer transition-colors duration-300 pt-1">
                   {question}
                 </h3>
               </div>
@@ -57,10 +54,10 @@ const QuestionCard = ({
                 }`}
               >
                 <button
-                  className={`flex items-center gap-2 text-xs font-medium px-3 py-2 rounded-full transition-all duration-300 hover:scale-105 ${
+                  className={`flex items-center gap-2 text-xs font-bold px-3 py-2 rounded-lg border-2 border-black transition-all duration-300 hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none ${
                     isPinned
-                      ? "text-amber-700 bg-amber-50 border border-amber-200 hover:bg-amber-100"
-                      : "text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100"
+                      ? "bg-[var(--color-accent-yellow)] text-black shadow-[2px_2px_0px_0px_#000]"
+                      : "bg-white text-black shadow-[2px_2px_0px_0px_#000]"
                   }`}
                   onClick={onTogglePin}
                   title={isPinned ? "Unpin question" : "Pin question"}
@@ -76,7 +73,7 @@ const QuestionCard = ({
                 </button>
 
                 <button
-                  className="flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 px-3 py-2 rounded-full border border-indigo-200 hover:bg-indigo-100 hover:scale-105 transition-all duration-300"
+                  className="flex items-center gap-2 text-xs font-bold text-black bg-[var(--color-accent-pink)] px-3 py-2 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all duration-300"
                   onClick={() => {
                     setIsExpanded(true);
                     onLearnMore();

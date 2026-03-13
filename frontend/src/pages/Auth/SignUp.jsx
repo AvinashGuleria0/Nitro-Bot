@@ -72,11 +72,11 @@ const SignUp = ({ setCurrentPage }) => {
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">Create an Account</h3>
-      <p className="text-xs text-slate-700 mt[5px] mb-6">Join us today !!</p>
+    <div className="w-[90vw] md:w-[33vw] p-7 flex-col justify-center flex items-center max-w-md mx-auto">
+      <h3 className="text-3xl font-black text-black mb-2 text-center">Create Account</h3>
+      <p className="text-sm font-bold text-slate-800 mt-[5px] mb-8 text-center bg-[var(--color-accent-blue)] px-3 py-1 sketch-border inline-block">Join us today!</p>
 
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleSignUp} className="w-full space-y-4">
         <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
         <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
@@ -102,17 +102,18 @@ const SignUp = ({ setCurrentPage }) => {
             type="password"
           />
         </div>
-        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+        {error && <p className="text-red-500 font-bold text-sm bg-red-100 p-2 sketch-border border-red-500">{error}</p>}
 
-        <button type="submit" className="btn-primary">
+        <button type="submit" className="sketch-button bg-[var(--color-accent-blue)] text-black font-black w-full py-3 mt-4 text-lg">
           SIGN UP
         </button>
 
-        <p className="text-[13px] text-slate-800 mt-3">
+        <p className="text-[14px] font-bold text-slate-800 mt-6 text-center">
           Already have an account?{" "}
           <button
-            className="font-medium text-primary underline cursor-pointer"
-            onClick={() => {
+            className="font-black text-black bg-[var(--color-accent-pink)] px-2 py-1 sketch-border sketch-shadow-sm ml-1 hover:translate-y-px hover:translate-x-px hover:shadow-none cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
               setCurrentPage("login");
             }}
           >

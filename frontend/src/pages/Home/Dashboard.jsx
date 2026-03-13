@@ -54,23 +54,19 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-100/40 to-purple-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-100/40 to-cyan-100/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
+      <div className="min-h-screen bg-[var(--color-bg)] relative overflow-hidden">
         <div className="container mx-auto pt-8 pb-24 relative z-10">
           {/* Header Section */}
           <div className="mb-12 px-4 md:px-0">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <LuSparkles className="text-white text-lg" />
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-[var(--color-accent-pink)] sketch-border flex items-center justify-center shadow-[4px_4px_0px_0px_#000]">
+                <LuSparkles className="text-black text-2xl font-black" />
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-slate-800 tracking-tight">
+              <div className="bg-white sketch-border shadow-[4px_4px_0px_0px_#000] px-6 py-2">
+                <h1 className="text-3xl font-black text-black tracking-tight uppercase">
                   Interview Prep Dashboard
                 </h1>
-                <p className="text-slate-600 mt-1">
+                <p className="text-slate-800 font-bold mt-1">
                   {sessions.length > 0
                     ? `Manage your ${
                         sessions.length
@@ -115,21 +111,21 @@ const Dashboard = () => {
           ) : (
             // Empty State
             <div className="flex flex-col items-center justify-center py-20 px-4">
-              <div className="w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mb-8">
-                <LuSparkles className="text-indigo-500 text-4xl" />
+              <div className="w-32 h-32 bg-[var(--color-accent-blue)] sketch-border shadow-[4px_4px_0px_0px_#000] flex items-center justify-center mb-8 rotate-3">
+                <LuSparkles className="text-black text-5xl" />
               </div>
-              <h3 className="text-2xl font-semibold text-slate-800 mb-3">
+              <h3 className="text-3xl font-black text-black mb-3">
                 No Sessions Yet
               </h3>
-              <p className="text-slate-600 text-center max-w-md mb-8 leading-relaxed">
+              <p className="text-slate-800 font-bold text-center max-w-md mb-8 leading-relaxed">
                 Create your first interview preparation session to get started
                 with AI-powered learning and practice.
               </p>
               <button
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-full hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="sketch-button bg-[var(--color-accent-pink)] text-black font-black px-8 py-4 flex items-center gap-2 text-lg"
                 onClick={() => setOpenCreateModal(true)}
               >
-                <LuPlus className="text-lg" />
+                <LuPlus className="text-xl" />
                 Create First Session
               </button>
             </div>
@@ -139,10 +135,10 @@ const Dashboard = () => {
           {/* Extended FAB for larger screens */}
           {sessions.length > 0 && (
             <button
-              className="hidden lg:flex fixed bottom-8 right-8 h-14 items-center justify-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-6 py-4 rounded-full hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl z-20"
+              className="hidden lg:flex fixed bottom-8 right-8 h-14 items-center justify-center gap-3 sketch-button bg-[var(--color-accent-green)] text-black font-black px-6 py-4 z-20 tooltip text-lg hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
               onClick={() => setOpenCreateModal(true)}
             >
-              <LuPlus className="text-lg" />
+              <LuPlus className="text-xl" />
               <span>New Session</span>
             </button>
           )}

@@ -4,18 +4,18 @@ const Modal = ({ children, isOpen, onClose, title, hideHeader }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black/40">
+    <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black/60 transition-opacity p-4">
       <div
-        className={`relative flex flex-col bg-white shadow-lg rounded-lg overflow-hidden`}
+        className={`relative flex flex-col bg-white sketch-border sketch-shadow-lg overflow-hidden w-full max-w-lg`}
       >
         {!hideHeader && (
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h3 className="md:text-lg font-medium text-gray-900">{title}</h3>
+          <div className="flex items-center justify-between p-4 border-b-2 border-black bg-[var(--color-accent-yellow)]">
+            <h3 className="text-xl font-black text-black">{title}</h3>
           </div>
         )}
         <button
           type="button"
-          className=" text-gray-400 bg-transparent hover:bg-orange-100 hover:text-gray-900 rounded-lg text-sm w-6 h-6 flex justify-center items-center absolute top-4 right-4 cursor-pointer"
+          className="text-black bg-white sketch-border w-8 h-8 flex justify-center items-center absolute top-4 right-4 cursor-pointer hover:bg-[var(--color-accent-pink)] hover:translate-y-px hover:translate-x-px transition-all shadow-[2px_2px_0px_0px_#000] hover:shadow-none z-10"
           onClick={onClose}
         >
           <svg 

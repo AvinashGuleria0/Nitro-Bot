@@ -10,15 +10,15 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
 
   return (
     <>
-      <div>
-        <label className="text-[13px] text-slate-800">{label}</label>
-        <div className="input-box">
+      <div className="mb-4">
+        <label className="text-[14px] font-bold text-slate-800 mb-1 block">{label}</label>
+        <div className="sketch-input flex items-center px-4 py-3 bg-white">
           <input
             type={
               type === "password" ? (showPassword ? "text" : "password") : type
             }
             placeholder={placeholder}
-            className="w-full bg-transparent outline-none cursor-pointer"
+            className="w-full bg-transparent outline-none placeholder:text-slate-400 font-medium text-slate-900"
             value={value}
             onChange={(e) => onChange(e)}
           />
