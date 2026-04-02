@@ -8,7 +8,7 @@
 
 ## ✨ What It Does
 
-* 🤖 Generates **custom interview questions** using **Gemini API**
+* 🤖 Generates **custom interview questions** using **Groq API** (Llama 3.3 70B)
 * 📚 Provides **deep explanations** for better understanding
 * 📌 Lets you **save & pin** questions for quick revision
 * 🗂️ Offers a **personalized dashboard** to manage prep materials
@@ -22,7 +22,7 @@
 * **Frontend:** React.js, Tailwind CSS, React-Toastify
 * **Backend:** Node.js, Express.js
 * **Database:** MongoDB
-* **AI Integration:** Gemini API
+* **AI Integration:** Groq API (Llama 3.3 70B)
 * **Auth:** JWT
 
 ---
@@ -56,7 +56,7 @@ Create a `.env` in the **server** folder:
 ```env
 MONGO_URI=abc
 JWT_SECRET=TOP_G_TOP_SECRET
-GEMINI_API_KEY=xyz
+GROQ_API_KEY=xyz
 PORT=9000
 ```
 
