@@ -6,6 +6,12 @@
 
 ### Live Demo - https://nitro-bot.vercel.app
 
+
+https://github.com/user-attachments/assets/d76f88ba-fad0-449b-8fc0-b7ebef765538
+
+
+
+
 ## ✨ What It Does
 
 * 🤖 Generates **custom interview questions** using **Groq API** (Llama 3.3 70B)
