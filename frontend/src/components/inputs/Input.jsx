@@ -9,39 +9,23 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
   };
 
   return (
-    <>
-      <div className="mb-4">
-        <label className="text-[14px] font-bold text-slate-800 mb-1 block">{label}</label>
-        <div className="sketch-input flex items-center px-4 py-3 bg-white">
-          <input
-            type={
-              type === "password" ? (showPassword ? "text" : "password") : type
-            }
-            placeholder={placeholder}
-            className="w-full bg-transparent outline-none placeholder:text-slate-400 font-medium text-slate-900"
-            value={value}
-            onChange={(e) => onChange(e)}
-          />
-          {type === "password" && (
-            <>
-              {showPassword ? (
-                <FaEye
-                  size={22}
-                  className="text-primary cursor-pointer"
-                  onClick={() => toggleShowPassword()}
-                />
-              ) : (
-                <FaRegEyeSlash
-                  size={22}
-                  className="text-slate-400 cursor-pointer"
-                  onClick={() => toggleShowPassword()}
-                />
-              )}
-            </>
-          )}
-        </div>
+    <div className="mb-4">
+      <label className="text-sm font-medium text-gray-700 mb-1.5 block">{label}</label>
+      <div className="relative flex items-center">
+        <input
+          type={type === "password" ? (showPassword ? "text" : "password") : type}
+          placeholder={placeholder}
+          className="premium-input pr-10"
+          value={value}
+          onChange={(e) => onChange(e)}
+        />
+        {type === "password" && (
+          <div className="absolute right-3 cursor-pointer text-gray-400 hover:text-gray-600 transition-colors" onClick={toggleShowPassword}>
+            {showPassword ? <FaEye size={18} /> : <FaRegEyeSlash size={18} />}
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -13,6 +13,7 @@ import QuestionCard from "../../components/cards/QuestionCard";
 import Drawer from "../../components/Drawer";
 import SkeletonLoader from "../../components/loaders/SkeletonLoader";
 import AIResponsePreview from "./components/AIResponsePreview";
+import SetupInterviewModal from "./components/SetupInterviewModal";
 
 const InterviewPrep = () => {
   const { sessionId } = useParams();
@@ -23,6 +24,7 @@ const InterviewPrep = () => {
   const [explanation, setExplanation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isUpdateLoader, setIsUpdateLoader] = useState(false);
+  const [openSetupModal, setOpenSetupModal] = useState(false);
 
   const fetchSessionDetailsById = async () => {
     try {
@@ -138,6 +140,7 @@ const InterviewPrep = () => {
             ? moment(sessionData.updatedAt).format("Do MMM YYYY")
             : ""
         }
+        onStartInterview={() => setOpenSetupModal(true)}
       />
 
       <div className="container mx-auto px-4 pt-4 pb-4 md:px-0">
@@ -227,6 +230,12 @@ const InterviewPrep = () => {
             </div>
           )}
         </Drawer>
+
+        <SetupInterviewModal 
+          isOpen={openSetupModal} 
+          onClose={() => setOpenSetupModal(false)} 
+          sessionId={sessionId}
+        />
       </div>
     </DashboardLayout>
   );

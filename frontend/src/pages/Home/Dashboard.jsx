@@ -54,19 +54,19 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-[var(--color-bg)] relative overflow-hidden">
-        <div className="container mx-auto pt-8 pb-24 relative z-10">
+      <div className="min-h-screen bg-gray-50 relative overflow-hidden">
+        <div className="container mx-auto pt-10 pb-24 relative z-10 px-6 max-w-7xl">
           {/* Header Section */}
-          <div className="mb-12 px-4 md:px-0">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-[var(--color-accent-pink)] sketch-border flex items-center justify-center shadow-[4px_4px_0px_0px_#000]">
-                <LuSparkles className="text-black text-2xl font-black" />
+          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex items-center gap-5">
+              <div className="w-14 h-14 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/20 text-white">
+                <LuSparkles className="text-2xl" />
               </div>
-              <div className="bg-white sketch-border shadow-[4px_4px_0px_0px_#000] px-6 py-2">
-                <h1 className="text-3xl font-black text-black tracking-tight uppercase">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
                   Interview Prep Dashboard
                 </h1>
-                <p className="text-slate-800 font-bold mt-1">
+                <p className="text-gray-500 font-medium mt-1 text-sm">
                   {sessions.length > 0
                     ? `Manage your ${
                         sessions.length
@@ -77,21 +77,29 @@ const Dashboard = () => {
                 </p>
               </div>
             </div>
+            {sessions.length > 0 && (
+              <button
+                className="hidden md:flex items-center gap-2 bg-gray-900 text-white font-medium px-6 py-3 rounded-xl hover:bg-black transition-all shadow-md active:scale-[0.98]"
+                onClick={() => setOpenCreateModal(true)}
+              >
+                <LuPlus className="text-lg" />
+                <span>New Session</span>
+              </button>
+            )}
           </div>
 
           {/* Sessions Grid */}
           {sessions.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4 md:px-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {sessions?.map((data, index) => (
                 <div
                   key={data?.id || data?._id || index}
-                  className="transform hover:scale-105 transition-all duration-300"
+                  className="animate-in fade-in slide-in-from-bottom-4 duration-500"
                   style={{
                     animationDelay: `${index * 100}ms`,
                   }}
                 >
                   <SummaryCard
-                    colors={Card_BG[index % Card_BG.length]}
                     role={data?.role || ""}
                     topicsToFocus={data?.topicsToFocus || ""}
                     experience={data?.experience || ""}
@@ -99,7 +107,7 @@ const Dashboard = () => {
                     description={data?.description || ""}
                     lastUpdated={
                       data?.updatedAt
-                        ? moment(data.updatedAt).format("Do MMM YYYY")
+                        ? moment(data.updatedAt).format("MMM Do, YYYY")
                         : ""
                     }
                     onSelect={() => navigate(`/interview-prep/${data?._id}`)}
@@ -110,19 +118,19 @@ const Dashboard = () => {
             </div>
           ) : (
             // Empty State
-            <div className="flex flex-col items-center justify-center py-20 px-4">
-              <div className="w-32 h-32 bg-[var(--color-accent-blue)] sketch-border shadow-[4px_4px_0px_0px_#000] flex items-center justify-center mb-8 rotate-3">
-                <LuSparkles className="text-black text-5xl" />
+            <div className="flex flex-col items-center justify-center py-24 px-4 bg-white rounded-3xl border border-gray-100 shadow-sm mt-8">
+              <div className="w-24 h-24 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mb-6 shadow-inner">
+                <LuSparkles className="text-4xl" />
               </div>
-              <h3 className="text-3xl font-black text-black mb-3">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
                 No Sessions Yet
               </h3>
-              <p className="text-slate-800 font-bold text-center max-w-md mb-8 leading-relaxed">
+              <p className="text-gray-500 font-medium text-center max-w-sm mb-8 leading-relaxed">
                 Create your first interview preparation session to get started
                 with AI-powered learning and practice.
               </p>
               <button
-                className="sketch-button bg-[var(--color-accent-pink)] text-black font-black px-8 py-4 flex items-center gap-2 text-lg"
+                className="bg-blue-600 text-white font-medium px-8 py-3.5 rounded-xl flex items-center gap-2 hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98]"
                 onClick={() => setOpenCreateModal(true)}
               >
                 <LuPlus className="text-xl" />
@@ -131,15 +139,13 @@ const Dashboard = () => {
             </div>
           )}
 
-
-          {/* Extended FAB for larger screens */}
+          {/* Extended FAB for mobile screens */}
           {sessions.length > 0 && (
             <button
-              className="hidden lg:flex fixed bottom-8 right-8 h-14 items-center justify-center gap-3 sketch-button bg-[var(--color-accent-green)] text-black font-black px-6 py-4 z-20 tooltip text-lg hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+              className="md:hidden fixed bottom-8 right-8 h-14 w-14 items-center justify-center bg-blue-600 text-white font-bold rounded-full shadow-lg shadow-blue-600/30 z-20 hover:scale-105 active:scale-95 transition-all"
               onClick={() => setOpenCreateModal(true)}
             >
-              <LuPlus className="text-xl" />
-              <span>New Session</span>
+              <LuPlus className="text-2xl mx-auto" />
             </button>
           )}
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LuUser, LuLogOut, LuChevronDown } from "react-icons/lu";
 import { UserContext } from "../../context/UserContext";
@@ -7,6 +7,7 @@ const ProfileInfoCard = () => {
   const { user, clearUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -29,97 +30,98 @@ const ProfileInfoCard = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return user && (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className="flex items-center gap-3 bg-white sketch-border hover:translate-y-1 transition-all duration-300 shadow-[2px_2px_0px_0px_#000] hover:shadow-none px-3 py-1 group"
+        className="flex items-center gap-3 bg-white border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-200 rounded-full pl-2 pr-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
       >
         <div className="relative">
           {user.profileImageUrl ? (
             <img
               src={user.profileImageUrl}
               alt="Profile"
-              className="w-10 h-10 object-cover border-2 border-black rounded-lg"
+              className="w-8 h-8 object-cover rounded-full border border-gray-200"
             />
           ) : (
-            <div className="w-10 h-10 bg-[var(--color-accent-pink)] border-2 border-black rounded-lg flex items-center justify-center text-black font-black text-sm">
+            <div className="w-8 h-8 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-xs">
               {getInitials(user.name)}
             </div>
           )}
-          <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[var(--color-accent-green)] rounded-full border-2 border-black"></div>
+          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></div>
         </div>
 
-        <div className="hidden sm:flex flex-col items-start pr-2">
-          <div className="text-[14px] font-black text-black leading-tight">
+        <div className="hidden sm:flex flex-col items-start pr-1">
+          <div className="text-sm font-semibold text-gray-900 leading-tight">
             {user.name || "User"}
-          </div>
-          <div className="text-xs font-bold text-[var(--color-primary)]">
-            {user.email ? user.email.split('@')[0] : "Account"}
           </div>
         </div>
 
         <LuChevronDown 
-          className={`w-5 h-5 text-black transition-transform duration-300 ${
+          className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${
             isDropdownOpen ? 'rotate-180' : ''
           }`}
         />
       </button>
 
       {isDropdownOpen && (
-        <>
-          <div 
-            className="fixed inset-0 z-10"
-            onClick={() => setIsDropdownOpen(false)}
-          />
-          
-          <div className="absolute right-0 top-full mt-2 w-64 bg-white sketch-border shadow-[4px_4px_0px_0px_#000] z-20 overflow-hidden animate-in slide-in-from-top-2 duration-200">
-            <div className="p-4 border-b-2 border-black bg-[var(--color-accent-yellow)]">
-              <div className="flex items-center gap-3">
-                {user.profileImageUrl ? (
-                  <img
-                    src={user.profileImageUrl}
-                    alt="Profile"
-                    className="w-12 h-12 border-2 border-black rounded-lg object-cover bg-white"
-                  />
-                ) : (
-                  <div className="w-12 h-12 bg-[var(--color-accent-pink)] border-2 border-black rounded-lg flex items-center justify-center text-black font-black">
-                    {getInitials(user.name)}
-                  </div>
-                )}
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-black text-black truncate">
-                    {user.name || "User"}
-                  </div>
-                  <div className="text-xs font-bold text-slate-800 truncate">
-                    {user.email || "user@example.com"}
-                  </div>
+        <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden transform origin-top-right transition-all">
+          <div className="p-4 border-b border-gray-50 bg-gray-50/50">
+            <div className="flex items-center gap-3">
+              {user.profileImageUrl ? (
+                <img
+                  src={user.profileImageUrl}
+                  alt="Profile"
+                  className="w-10 h-10 border border-gray-200 rounded-full object-cover bg-white"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold">
+                  {getInitials(user.name)}
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-bold text-gray-900 truncate">
+                  {user.name || "User"}
+                </div>
+                <div className="text-xs font-medium text-gray-500 truncate">
+                  {user.email || "user@example.com"}
                 </div>
               </div>
             </div>
-
-            <div className="p-2 flex flex-col gap-2">
-              <button
-                onClick={() => {
-                  navigate("/dashboard");
-                  setIsDropdownOpen(false);
-                }}
-                className="w-full flex items-center gap-3 px-3 py-2 text-sm font-black text-black hover:bg-[var(--color-accent-blue)] border-2 border-transparent hover:border-black rounded-lg transition-colors duration-200"
-              >
-                <LuUser className="w-4 h-4 font-black" />
-                Dashboard
-              </button>
-              
-              <button
-                onClick={handleLogout}
-                className="w-full flex items-center gap-3 px-3 py-2 text-sm font-black text-black hover:bg-[var(--color-accent-pink)] border-2 border-transparent hover:border-black rounded-lg transition-colors duration-200"
-              >
-                <LuLogOut className="w-4 h-4" />
-                Sign Out
-              </button>
-            </div>
           </div>
-        </>
+
+          <div className="p-2 flex flex-col gap-1">
+            <button
+              onClick={() => {
+                navigate("/dashboard");
+                setIsDropdownOpen(false);
+              }}
+              className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+            >
+              <LuUser className="w-4 h-4" />
+              Dashboard
+            </button>
+            
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+            >
+              <LuLogOut className="w-4 h-4" />
+              Sign Out
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

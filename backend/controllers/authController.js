@@ -124,4 +124,55 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile, updateUserProfile };
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+const axios = require('axios');
+
+const googleLogin = async (req, res) => {
+  try {
+    const { token } = req.body; // This is the access_token from frontend
+    
+    // Fetch user info from Google using the access token
+    const googleResponse = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    
+    const { sub: googleId, email, name, picture: profileImageUrl } = googleResponse.data;
+    
+    // Check if user exists by email or googleId
+    let user = await User.findOne({ $or: [{ email }, { googleId }] });
+    
+    if (!user) {
+      // Create new user if doesn't exist
+      user = await User.create({
+        name,
+        email,
+        googleId,
+        profileImageUrl,
+      });
+    } else if (!user.googleId) {
+      // If user exists with email but no googleId (registered manually before), link them
+      user.googleId = googleId;
+      if (!user.profileImageUrl) user.profileImageUrl = profileImageUrl;
+      await user.save();
+    }
+    
+    // Generate JWT token
+    const jwtToken = generateToken(user._id);
+    
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      profileImageUrl: user.profileImageUrl,
+      token: jwtToken,
+    });
+    
+  } catch (error) {
+    console.error("💥 GOOGLE LOGIN ERROR:", error);
+    res.status(500).json({ message: "Server error during Google login", error: error.message });
+  }
+};
+
+module.exports = { registerUser, loginUser, googleLogin, getUserProfile, updateUserProfile };

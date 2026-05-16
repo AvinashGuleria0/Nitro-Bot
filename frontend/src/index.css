@@ -1,172 +1,79 @@
-@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --font-display: "Urbanist", sans-serif;
-  --breakpoint-3xl: 1920px;
-  --color-primary: #ff9324;
-  
-  /* Neo-Brutalist / Sketch Colors */
-  --color-bg: #FDF9F1; /* Warm paper-like white */
-  --color-border: #111111; /* Very dark slate, almost black */
-  --color-accent-blue: #A2D2FF;
-  --color-accent-pink: #FFC0CB;
-  --color-accent-green: #B8F2E6;
-  --color-accent-yellow: #FBEF97;
+  --font-display: "Inter", sans-serif;
+  --color-bg: #FAFAFA; /* Ultra clean light gray/white */
+  --color-surface: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-accent-primary: #2563EB; /* Premium Blue */
+  --color-accent-hover: #1D4ED8;
 }
 
 @layer base {
   html {
     font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     background-color: var(--color-bg);
-    color: var(--color-border);
+    color: var(--color-text-primary);
     overflow-x: hidden;
   }
 }
 
 /* Custom Scrollbar styling */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px; /* Slightly thicker for the solid vibe */
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--color-border);
-  border: 1px solid var(--color-bg);
-  border-radius: 0px; /* Square edges for the sketch look */
+  background-color: #cbd5e1;
+  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
-  border-left: 2px solid var(--color-border);
 }
 
 @layer utilities {
-  /* Neo-Brutalist Components */
-  
-  /* The core sketch card/button style */
-  .sketch-border {
-    border: 3px solid var(--color-border);
-    border-radius: 12px; /* Slight curve, looks friendly and organic */
+  /* Minimalist UI Components */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   }
 
-  /* Solid heavy shadow */
-  .sketch-shadow {
-    box-shadow: 4px 4px 0px 0px var(--color-border);
-  }
-  
-  /* Thicker shadow for floating elements like modals */
-  .sketch-shadow-lg {
-    box-shadow: 8px 8px 0px 0px var(--color-border);
+  .premium-shadow {
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
   }
 
-  /* Interactive button/card behavior */
-  .sketch-button {
-    border: 3px solid var(--color-border);
-    border-radius: 12px;
-    box-shadow: 4px 4px 0px 0px var(--color-border);
-    transition: all 0.15s ease-in-out;
+  .premium-input {
+    @apply w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 placeholder-gray-400;
   }
 
-  .sketch-button:hover, .sketch-button:focus-visible {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px var(--color-border);
+  .premium-btn {
+    @apply w-full flex items-center justify-center gap-2 bg-blue-600 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98];
   }
 
-  .sketch-button:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px 0px var(--color-border);
-  }
-
-  /* Input fields */
-  .sketch-input {
-    border: 3px solid var(--color-border);
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 2px 2px 0px 0px var(--color-border);
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .sketch-input:focus {
-    outline: none;
-    box-shadow: 4px 4px 0px 0px var(--color-border);
-    transform: translate(-1px, -1px);
-  }
-  @keyframes text-shine {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 100% 50%;
-    }
-  }
-
-  .animate-text-shine {
-    animation: text-shine 3s ease-in-out infinite alternate;
-  }
-
-  @keyframes blob1 {
-    0%,
-    100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-      transform: translate(30px, -60px) scale(1.1);
-    }
-    66% {
-      transform: translate(-20px, 20px) scale(0.9);
-    }
-  }
-
-  @keyframes blob2 {
-    0%,
-    100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-      transform: translate(-40px, 60px) scale(1.05);
-    }
-    66% {
-      transform: translate(20px, -40px) scale(0.95);
-    }
-  }
-
-  @keyframes blob3 {
-    0%,
-    100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-      transform: translate(20px, 140px) scale(1.15);
-    }
-    66% {
-      transform: translate(-30px, -30px) scale(0.85);
-    }
+  .premium-btn-secondary {
+    @apply w-full flex items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-200 hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98];
   }
 }
 
-.animate-blob1 {
-  animation: blob1 8s ease-in-out infinite;
-}
+/* Retain necessary legacy classes temporarily mapped to clean styles to avoid breaking existing pages before overhaul */
+.sketch-border { @apply border border-gray-200 rounded-xl; }
+.sketch-shadow { @apply shadow-sm; }
+.sketch-shadow-lg { @apply shadow-md; }
+.sketch-button { @apply w-full flex items-center justify-center gap-2 bg-blue-600 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]; }
+.sketch-input { @apply w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 placeholder-gray-400; }
+.input-box { @apply w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 placeholder-gray-400; }
+.btn-primary { @apply w-full flex items-center justify-center gap-2 bg-blue-600 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]; }
+.btn-small { @apply flex items-center justify-center gap-2 bg-blue-600 text-white font-medium py-2 px-6 rounded-xl transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]; }
 
-.animate-blob2 {
-  animation: blob2 10s ease-in-out infinite;
-}
-
-.animate-blob3 {
-  animation: blob3 12s ease-in-out infinite;
-}
-
-.input-box {
-  @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-orange-300;
-}
-
-.btn-primary {
-  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-black shadow-lg shadow-orange-600/5 p-[10px] rounded-md my-1 hover:bg-orange-600/15 hover:text-black cursor-pointer;
-}
-
-.btn-small {
-  @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300;
-}

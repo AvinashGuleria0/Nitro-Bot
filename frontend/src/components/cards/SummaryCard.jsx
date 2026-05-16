@@ -1,9 +1,8 @@
 import React from "react";
-import { LuTrash2, LuBriefcase, LuClock, LuMessageSquare, LuCalendarDays } from "react-icons/lu";
+import { LuTrash2, LuClock, LuMessageSquare, LuBriefcase } from "react-icons/lu";
 import { getInitials } from "../../utils/helper";
 
 const SummaryCard = ({
-  colors,
   role,
   topicsToFocus,
   experience,
@@ -14,68 +13,57 @@ const SummaryCard = ({
   onDelete,
 }) => {
   return (
-    <div className="group cursor-pointer" onClick={onSelect}>
-      <div className="sketch-border sketch-shadow bg-white overflow-hidden transition-all duration-300 hover:translate-y-1 hover:shadow-none min-h-[220px] flex flex-col justify-between">
-        <div
-          className="relative p-5 border-b-4 border-black"
-          style={{
-            background: colors.bgcolor || 'var(--color-accent-blue)',
-          }}
-        >
-          
-          <div className="relative z-10 flex items-start justify-between">
-            <div className="flex items-center gap-4 flex-1">
-              <div className="w-14 h-14 bg-white sketch-border flex items-center justify-center shadow-[2px_2px_0px_0px_#000]">
-                <span className="text-xl font-black text-black">
-                  {getInitials(role)}
-                </span>
-              </div>
-              
-              <div className="flex-1 min-w-0">
-                <h2 className="text-lg font-black text-black mb-1 truncate leading-tight">
-                  {role}
-                </h2>
-                <p className="text-sm font-bold text-slate-800 line-clamp-2 leading-tight">
-                  {topicsToFocus || "No specific topics defined"}
-                </p>
-              </div>
+    <div 
+      className="group cursor-pointer bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1"
+      onClick={onSelect}
+    >
+      <div className="p-6 flex-1">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center gap-4 flex-1">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-inner flex-shrink-0">
+              <span className="text-lg font-bold">
+                {getInitials(role)}
+              </span>
             </div>
-
-            <button
-              className="flex items-center justify-center w-10 h-10 bg-white hover:bg-[var(--color-accent-pink)] sketch-border shadow-[2px_2px_0px_0px_#000] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all duration-300"
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete();
-              }}
-              title="Delete session"
-            >
-              <LuTrash2 className="w-5 h-5 text-black" />
-            </button>
+            
+            <div className="flex-1 min-w-0 pr-4">
+              <h2 className="text-xl font-bold text-gray-900 mb-1 truncate">
+                {role}
+              </h2>
+              <p className="text-sm font-medium text-gray-500 line-clamp-2 leading-relaxed">
+                {topicsToFocus || "General preparation"}
+              </p>
+            </div>
           </div>
+
+          <button
+            className="flex items-center justify-center w-8 h-8 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            title="Delete session"
+          >
+            <LuTrash2 className="w-4 h-4" />
+          </button>
         </div>
 
-        <div className="p-5 flex flex-wrap gap-3 items-center">
-          <div className="flex items-center gap-2 bg-white sketch-border px-3 py-1.5 shadow-[2px_2px_0px_0px_#000]">
-            <p className="text-xs font-bold text-black border-r-2 border-black pr-2">Experience</p>
-            <p className="text-sm font-black text-black">
-              {experience} {experience === 1 ? "Year" : "Years"}
-            </p>
+        <div className="flex flex-wrap items-center gap-3 mt-6">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-blue-50/80 px-2.5 py-1 rounded-md">
+            <LuBriefcase className="w-3.5 h-3.5" />
+            <span>{experience} {experience === 1 ? "Year" : "Years"}</span>
           </div>
 
-          <div className="flex items-center gap-2 bg-white sketch-border px-3 py-1.5 shadow-[2px_2px_0px_0px_#000]">
-            <p className="text-xs font-bold text-black border-r-2 border-black pr-2">Questions</p>
-            <p className="text-sm font-black text-black">
-              {questions} Q&A
-            </p>
-          </div>
-          
-          <div className="flex w-full items-center gap-2 bg-white sketch-border px-3 py-1.5 shadow-[2px_2px_0px_0px_#000] mt-2">
-            <p className="text-xs font-bold text-black border-r-2 border-black pr-2">Last Updated</p>
-            <p className="text-sm font-black text-black">
-              {lastUpdated}
-            </p>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-purple-700 bg-purple-50/80 px-2.5 py-1 rounded-md">
+            <LuMessageSquare className="w-3.5 h-3.5" />
+            <span>{questions} Q&A</span>
           </div>
         </div>
+      </div>
+      
+      <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-500 font-medium">
+        <LuClock className="w-3.5 h-3.5" />
+        <span>Updated {lastUpdated}</span>
       </div>
     </div>
   );
