@@ -10,6 +10,25 @@ const SessionSchema = new mongoose.Schema(
     topicsToFocus: [{ type: String }],
     description: { type: String },
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
+    attempts: [{
+      createdAt: { type: Date, default: Date.now },
+      persona: { type: String },
+      duration: { type: String },
+      avgScore: { type: Number },
+      avgConfidence: { type: Number },
+      history: [{
+        question: String,
+        userAnswer: String,
+        spokenFeedback: String,
+        evaluation: {
+          score: Number,
+          confidenceScore: Number,
+          sentiment: String,
+          industryStandardAnswer: String,
+          keyDifferences: [String]
+        }
+      }]
+    }]
   },
   { timestamps: true }
 );

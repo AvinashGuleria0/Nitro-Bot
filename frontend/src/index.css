@@ -65,6 +65,16 @@
   .premium-btn-secondary {
     @apply w-full flex items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-200 hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98];
   }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+  }
 }
 
 /* Retain necessary legacy classes temporarily mapped to clean styles to avoid breaking existing pages before overhaul */

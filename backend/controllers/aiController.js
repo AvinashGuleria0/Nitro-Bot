@@ -88,5 +88,60 @@ const generateConceptExplanation = async (req, res) => {
   }
 };
 
+const evaluateLiveAnswer = async (req, res) => {
+  try {
+    const { question, userAnswer, persona } = req.body;
+    if (!question || !userAnswer) {
+      return res.status(400).json({ message: "Question and userAnswer are required" });
+    }
 
-module.exports = { generateInterviewQuestions, generateConceptExplanation };
+    const personaInstruction = persona === "strict" 
+      ? "You are a strict technical interviewer. Your feedback should be direct, challenging, and focus heavily on edge cases."
+      : persona === "friendly"
+      ? "You are a friendly HR recruiter. Your feedback should be encouraging, warm, and focus on communication style."
+      : "You are a balanced professional interviewer. Provide constructive, balanced feedback.";
+
+    const prompt = `
+      ${personaInstruction}
+      Evaluate the following answer to the interview question.
+      Question: "${question}"
+      User's Answer: "${userAnswer}"
+
+      Provide your evaluation strictly as a valid JSON object matching the following structure exactly:
+      {
+        "spokenFeedback": "A short, conversational sentence (max 2 sentences) responding to the candidate's answer and guiding them to the next step. This will be spoken via TTS.",
+        "evaluation": {
+          "score": 8, // A number between 1 and 10
+          "confidenceScore": 85, // A number between 0 and 100 based on tone/hesitation
+          "sentiment": "Short description of the user's sentiment (e.g. 'Assertive and clear', 'Hesitant')",
+          "industryStandardAnswer": "A detailed example of how a senior industry professional would answer this.",
+          "keyDifferences": ["Difference 1", "Difference 2"] // Array of strings pointing out what the user missed compared to the industry standard
+        }
+      }
+    `;
+
+    const response = await client.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7,
+      max_tokens: 1024,
+    });
+
+    const rawText = response.choices[0].message.content;
+    const cleanedText = rawText
+      .replace(/```json\s*/i, "")
+      .replace(/```/g, "")
+      .trim();
+
+    const data = JSON.parse(cleanedText);
+    res.status(200).json(data);
+  } catch (error) {
+    console.error("EVALUATION ERROR:", error);
+    res.status(500).json({
+      message: "Failed to evaluate answer",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { generateInterviewQuestions, generateConceptExplanation, evaluateLiveAnswer };

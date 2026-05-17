@@ -100,3 +100,45 @@ exports.deleteSession = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+exports.saveAttempt = async (req, res) => {
+  try {
+    const { history, persona, duration } = req.body;
+    
+    let totalScore = 0;
+    let totalConfidence = 0;
+    
+    if (history && history.length > 0) {
+      history.forEach(h => {
+        totalScore += h.evaluation?.score || 0;
+        totalConfidence += h.evaluation?.confidenceScore || 0;
+      });
+    }
+
+    const avgScore = history.length > 0 ? Math.round(totalScore / history.length) : 0;
+    const avgConfidence = history.length > 0 ? Math.round(totalConfidence / history.length) : 0;
+
+    const attempt = {
+      persona,
+      duration,
+      avgScore,
+      avgConfidence,
+      history
+    };
+
+    const session = await Session.findByIdAndUpdate(
+      req.params.id,
+      { $push: { attempts: attempt } },
+      { new: true }
+    );
+
+    if (!session) {
+      return res.status(404).json({ message: "Session not found" });
+    }
+
+    res.status(200).json({ success: true, attempt });
+  } catch (error) {
+    console.error("SAVE ATTEMPT ERROR:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

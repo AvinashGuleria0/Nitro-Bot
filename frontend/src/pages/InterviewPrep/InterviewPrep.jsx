@@ -148,13 +148,9 @@ const InterviewPrep = () => {
           Interview Q & A
         </h2>
 
-        <div className="grid grid-cols-12 gap-4 mt-5 mb-10">
+        <div className="flex flex-col md:flex-row gap-4 mt-5 mb-10">
           <motion.div
-            className="col-span-12"
-            animate={{
-              width: openLeanMoreDrawer ? "58.333333%" : "66.666667%",
-            }}
-            transition={{ duration: 0.1, ease: "easeInOut" }}
+            className={`w-full transition-all duration-300 ${openLeanMoreDrawer ? "md:w-7/12" : "md:w-8/12"}`}
           >
             <AnimatePresence>
               {sessionData?.questions?.map((data, index) => (
@@ -230,6 +226,45 @@ const InterviewPrep = () => {
             </div>
           )}
         </Drawer>
+
+        {/* Past Attempts History Section */}
+        {sessionData?.attempts && sessionData.attempts.length > 0 && (
+          <div className="mt-20 mb-10">
+            <h2 className="gap-4 font-semibold text-xl mb-6">
+              Past Mock Interviews
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sessionData.attempts.map((attempt, index) => (
+                <div 
+                  key={index}
+                  onClick={() => navigate(`/interview/${sessionId}/feedback`, { state: { interviewHistory: attempt.history, persona: attempt.persona, duration: attempt.duration } })}
+                  className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 cursor-pointer group"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg">
+                      #{index + 1}
+                    </div>
+                    <div className="text-right">
+                      <span className="block text-sm font-bold text-gray-900 capitalize">{attempt.persona} Persona</span>
+                      <span className="block text-xs text-gray-500">{moment(attempt.createdAt).fromNow()}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-50">
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-black text-gray-900 leading-none">{attempt.avgScore}<span className="text-sm text-gray-400 font-medium">/10</span></span>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase mt-1">Avg Score</span>
+                    </div>
+                    <div className="w-px h-8 bg-gray-100"></div>
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-black text-gray-900 leading-none">{attempt.avgConfidence}%</span>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase mt-1">Confidence</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <SetupInterviewModal 
           isOpen={openSetupModal} 

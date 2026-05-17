@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Home/Dashboard";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 import LiveInterview from "./pages/LiveInterview/LiveInterview";
+import FeedbackReport from "./pages/LiveInterview/FeedbackReport";
 
 const App = () => {
   return (
@@ -24,6 +25,10 @@ const App = () => {
           <Route 
             path="/interview/:sessionId/live" 
             element={<LiveInterview />} 
+          />
+          <Route 
+            path="/interview/:sessionId/feedback" 
+            element={<FeedbackReport />} 
           />
         </Routes>
       </Router>
