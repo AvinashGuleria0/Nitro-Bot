@@ -888,7 +888,7 @@ const LiveInterview = () => {
       </div>
 
       {/* Top Bar */}
-      <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4 z-20 overflow-x-hidden">
+      <div className="w-full relative z-20 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4 overflow-x-hidden">
         <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 md:gap-3">
           <div className="bg-white/5 backdrop-blur-md rounded-full px-4 py-2 text-sm font-semibold text-gray-300 border border-white/10">
             {persona.charAt(0).toUpperCase() + persona.slice(1)} Persona
@@ -968,7 +968,7 @@ const LiveInterview = () => {
       </div>
 
       {/* Main Area */}
-      <div className="flex-1 flex flex-col items-center justify-center z-10 px-6 pt-24 pb-48">
+      <div className="flex-1 flex flex-col items-center justify-center z-10 px-6 pb-24">
         {/* Status label */}
         <AnimatePresence mode="wait">
           <motion.div

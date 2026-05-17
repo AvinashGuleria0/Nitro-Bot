@@ -20,7 +20,7 @@ const Input = ({ value, onChange, label, placeholder, type, icon: Icon }) => {
         <input
           type={type === "password" ? (showPassword ? "text" : "password") : type}
           placeholder={placeholder}
-          className={`premium-input pr-10 ${Icon ? "pl-10" : ""}`}
+          className={`premium-input pr-10 ${Icon ? "!pl-10" : ""}`}
           value={value}
           onChange={(e) => onChange(e)}
         />

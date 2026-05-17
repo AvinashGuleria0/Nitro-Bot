@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { AnimatePresence, motion } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
@@ -17,6 +17,7 @@ import SetupInterviewModal from "./components/SetupInterviewModal";
 
 const InterviewPrep = () => {
   const { sessionId } = useParams();
+  const navigate = useNavigate();
 
   const [sessionData, setSessionData] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
